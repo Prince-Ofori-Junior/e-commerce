@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Food & Beverages</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    :root {
+      --primary: #f4b400;
+    }
+
+    /* Category Bar */
+    .category-bar {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2.5rem;
+      padding: 2rem 1rem;
+      background: #fff;
+    }
+    .category {
+      text-align: center;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+    .category:hover {
+      transform: scale(1.05);
+    }
+    .category img {
+      width: 70px;
+      height: 70px;
+      object-fit: contain;
+      border-radius: 50%;
+      background: #f5f5f5;
+      padding: 0.6rem;
+      margin-bottom: 0.5rem;
+    }
+    .category span {
+      display: block;
+      font-size: 1rem;
+      color: #333;
+    }
+
+    /* Grid + Cards */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 1.2rem;
+      align-items: start;
+      padding: 2rem 1rem;
+    }
+    .card {
+      display: flex;
+      flex-direction: column;
+      border: 1px solid #eee;
+      border-radius: 10px;
+      background: #fff;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      max-width: 300px;
+      margin: 0 auto;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    .card-image {
+      width: 100%;
+      aspect-ratio: 4/3;
+      overflow: hidden;
+    }
+    .card-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .card-body {
+      padding: 1rem;
+      text-align: center;
+    }
+    .price {
+      color: var(--primary);
+      font-weight: bold;
+      margin-bottom: 1rem;
+    }
+    .btn {
+      display: inline-block;
+      background-color: var(--primary);
+      color: #333;
+      padding: 0.7rem 1.2rem;
+      border-radius: 5px;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+    .btn:hover {
+      opacity: 0.9;
+    }
+
+
+   /* Search */
+   /* Search */
+.nav-search {
+  justify-self: center;
+  width: 100%;
+  max-width: 500px; /* same as furniture */
+}
+
+.nav-search input {
+  padding: 0.5rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .nav-search {
+    max-width: 900px; /* make it stretch wider in mobile like furniture */
+  }
+
+  .nav-search input {
+    font-size: 0.8rem;
+    padding: 0.4rem 0.8rem;
+  }
+}
+
+
+
+   
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-header">
+      <div class="logo">MyBrand</div>
+
+      <div class="nav-search">
+  <input type="text" id="productSearch" placeholder="Search food & drinks...">
+</div>
+
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li class="dropdown">
+          <a href="#">Products ▾</a>
+          <ul class="dropdown-menu">
+            <li><a href="furniture.html">Furnitures</a></li>
+            <li><a href="foodBeverages.html" class="active">Food & Beverages</a></li>
+          </ul>
+        </li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+
+      <button class="hamburger">&#9776;</button>
+    </div>
+  </nav>
+  <div class="mobile-overlay"></div>
+
+
+  <!-- Categories Bar -->
+  <section class="category-bar">
+    <div class="category" data-category="cereals">
+      <img src="cereal.png" alt="Cereals">
+      <span>Cereals</span>
+    </div>
+    <div class="category" data-category="drinks">
+      <img src="Coke.png" alt="Drinks">
+      <span>Drinks</span>
+    </div>
+    <div class="category" data-category="sauces">
+      <img src="paste.png" alt="Sauces">
+      <span>Sauces</span>
+    </div>
+    <div class="category" data-category="snacks">
+      <img src="pngwing.com (8).png" alt="Snacks">
+      <span>Snacks</span>
+    </div>
+    <div class="category" data-category="fruits">
+      <img src="fruits.png" alt="Fruits">
+      <span>Fruits</span>
+    </div>
+    <div class="category" data-category="beverages">
+      <img src="pngwing.com (10).png" alt="Beverages">
+      <span>Beverages</span>
+    </div>
+  </section>
+
+
+  <!-- Food & Beverages Products -->
+  <div class="grid" id="productsGrid">
+    <div class="card" data-category="cereals">
+      <div class="card-image"><img src="WhatsApp Image 2025-09-16 at 15.06.09_75ce5168.jpg" alt="Tom Brown"></div>
+      <div class="card-body">
+        <h3>Tom Brown</h3>
+        <p class="price">GHS 50</p>
+        <a href="https://wa.me/233xxxxxxxxx?text=I'm%20interested%20in%20Tom%20Brown" class="btn">Order Now</a>
+      </div>
+    </div>
+
+    <div class="card" data-category="sauces">
+      <div class="card-image"><img src="WhatsApp Image 2025-09-16 at 15.06.09_75ce5168.jpg" alt="Groundnut Paste"></div>
+      <div class="card-body">
+        <h3>Groundnut Paste</h3>
+        <p class="price">GHS 30</p>
+        <a href="https://wa.me/233xxxxxxxxx?text=I'm%20interested%20in%20Groundnut%20Paste" class="btn">Order Now</a>
+      </div>
+    </div>
+
+    <div class="card" data-category="drinks">
+      <div class="card-image"><img src="WhatsApp Image 2025-09-16 at 15.06.09_75ce5168.jpg" alt="Fruit Juice"></div>
+      <div class="card-body">
+        <h3>Fruit Juice</h3>
+        <p class="price">GHS 15</p>
+        <a href="https://wa.me/233xxxxxxxxx?text=I'm%20interested%20in%20Fruit%20Juice" class="btn">Order Now</a>
+      </div>
+    </div>
+
+    <div class="card" data-category="snacks">
+      <div class="card-image"><img src="WhatsApp Image 2025-09-16 at 15.06.09_75ce5168.jpg" alt="Biscuits"></div>
+      <div class="card-body">
+        <h3>Biscuits</h3>
+        <p class="price">GHS 10</p>
+        <a href="https://wa.me/233xxxxxxxxx?text=I'm%20interested%20in%20Biscuits" class="btn">Order Now</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Mobile nav toggle
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector('.nav-links');
+    const overlay = document.querySelector('.mobile-overlay');
+    hamburger.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('show');
+      overlay.style.display = isOpen ? 'block' : 'none';
+    });
+    overlay.addEventListener('click', () => {
+      navLinks.classList.remove('show');
+      overlay.style.display = 'none';
+    });
+
+    // Search
+    const searchInput = document.getElementById('productSearch');
+    const cards = document.querySelectorAll('.card');
+    searchInput.addEventListener('input', () => {
+      const filter = searchInput.value.toLowerCase();
+      cards.forEach(card => {
+        const productName = card.querySelector('h3').textContent.toLowerCase();
+        card.style.display = productName.includes(filter) ? 'flex' : 'none';
+      });
+    });
+
+    // Category filter
+    const categories = document.querySelectorAll('.category');
+    categories.forEach(cat => {
+      cat.addEventListener('click', () => {
+        const type = cat.dataset.category;
+        cards.forEach(card => {
+          card.style.display = card.dataset.category === type ? 'flex' : 'none';
+        });
+      });
+    });
+  </script>
+
+</body>
+</html>
