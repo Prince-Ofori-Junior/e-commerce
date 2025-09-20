@@ -1,5 +1,4 @@
 // === NAVIGATION ===
-// === NAVIGATION ===
 const hamburger = document.querySelector(".hamburger");
 const navLinks = document.querySelector(".nav-links");
 const overlay = document.querySelector(".mobile-overlay");
@@ -84,3 +83,25 @@ document.querySelectorAll(".add-to-cart").forEach((btn) => {
     updateCart();
   });
 });
+
+// === NAV SIDEBAR ===
+const navSidebar = document.getElementById("navSidebar");
+const closeNav = document.querySelector(".close-nav");
+
+hamburger.addEventListener("click", () => {
+  navSidebar.classList.toggle("open");
+  overlay.classList.toggle("active");
+});
+
+closeNav.addEventListener("click", () => {
+  navSidebar.classList.remove("open");
+  overlay.classList.remove("active");
+});
+
+overlay.addEventListener("click", () => {
+  navSidebar.classList.remove("open");
+  cartSidebar.classList.remove("open"); // also closes cart
+  overlay.classList.remove("active");
+});
+
+
