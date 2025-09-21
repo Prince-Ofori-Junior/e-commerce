@@ -301,6 +301,7 @@ a {
 .card-body .btn:hover {
   background: #056a02;
 }
+
 .section-title {
   text-align: center;
   font-size: 2rem;
@@ -308,7 +309,6 @@ a {
   margin-bottom: 2rem;
   color: var(--dark);
 }
-
 
 /* Tablet */
 @media (max-width: 992px) {
@@ -339,25 +339,46 @@ a {
 }
 
 /* 🔽 About Section */
-.bg-light {
-  background: var(--light);
-}
-
 .about-snippet {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 2rem;
   align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 
 .about-snippet img {
   width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
   border-radius: 10px;
 }
 
-.about-snippet .text {
-  display: flex;
-  flex-direction: column;
+.about-snippet h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: var(--primary);
+  text-align: center;
+}
+
+.about-snippet p {
+  font-size: 1rem;
+  line-height: 1.6;
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* 📱 On tablets & smaller, stack image + text */
+@media (max-width: 992px) {
+  .about-snippet {
+    grid-template-columns: 1fr;
+  }
+
+  .about-snippet img {
+    max-width: 100%;
+  }
 }
 
 /* 🔽 Footer */
@@ -442,10 +463,6 @@ footer a:hover {
     grid-template-columns: 1fr;
   }
 
-  .about-snippet .text {
-    justify-content: center;
-  }
-
   .nav-search {
     width: 100%;
     text-align: center;
@@ -480,6 +497,7 @@ footer a:hover {
     order: 2;
     width: 100%;
     margin-top: 10px;
+    color: white;
   }
 
   .infobar-right {
@@ -614,8 +632,19 @@ footer a:hover {
 
 #cartItems li {
   display: flex;
+  align-items: center;
   justify-content: space-between;
+  gap: 0.5rem;
   margin-bottom: 0.5rem;
+}
+
+#cartItems li img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 6px;
+  margin-right: 0.5rem;
+  flex-shrink: 0;
 }
 
 .cart-total {
