@@ -35,7 +35,7 @@
 <div class="nav-sidebar" id="navSidebar">
   <button class="close-nav">&times;</button> <!-- Replaced "Close" with × -->
   <ul>
-     <li><a href="#" class="active">Home</a></li>
+     <li><a href="index.html" class="active">Home</a></li>
      <li class="dropdown">
        <a href="#">Products ▾</a>
        <ul class="dropdown-menu">
@@ -91,18 +91,18 @@
   
 </div>
 
-<!-- Overlay -->
+<!-- Overlay (single element) -->
 <div class="mobile-overlay"></div>
 
+<!-- 🛒 Cart Sidebar -->
+<div class="cart-sidebar" id="cartSidebar">
+  <h3>Your Cart</h3>
+  <ul id="cartItems"></ul>
+  <p class="cart-total">Total: GHS <span id="cartTotal">0</span></p>
+  <button class="btn btn-primary checkout-btn">Checkout</button>
+  <button class="btn close-cart" id="closeCart">Close</button>
+</div>
 
-  <!-- 🛒 Mini Cart Sidebar -->
-  <div class="cart-sidebar" id="cartSidebar">
-    <h3>Your Cart</h3>
-    <ul id="cartItems"></ul>
-    <p class="cart-total">Total: GHS <span id="cartTotal">0</span></p>
-    <button class="btn btn-primary checkout-btn">Checkout</button>
-    <button class="btn close-cart" id="closeCart">Close</button>
-  </div>
 
   <!-- Hero Section -->
 <section class="hero">
@@ -128,7 +128,6 @@
         </div>
         <div class="card-body">
           <h3>Modern Sofa</h3>
-          <p>Comfortable and stylish sofa for your living room.</p>
           <p class="price" data-price="1200">GHS 1,200</p>
           <button class="btn btn-primary add-to-cart">Add to Cart</button>
         </div>
@@ -140,7 +139,6 @@
         </div>
         <div class="card-body">
           <h3>Nutritious Tom Brown</h3>
-          <p>Rich in nutrients, perfect for a healthy breakfast.</p>
           <p class="price" data-price="45">GHS 45</p>
           <button class="btn btn-primary add-to-cart">Add to Cart</button>
         </div>
@@ -152,7 +150,6 @@
         </div>
         <div class="card-body">
           <h3>Fresh Groundnut Paste</h3>
-          <p>Pure groundnut paste with no additives.</p>
           <p class="price" data-price="30">GHS 30</p>
           <button class="btn btn-primary add-to-cart">Add to Cart</button>
         </div>

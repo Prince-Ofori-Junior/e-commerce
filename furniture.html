@@ -5,11 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Furniture Store</title>
   <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
-   :root {
-  --primary: #f4b400;
-}
-
+   
 
 
 /* --- Category Bar --- */
@@ -54,138 +52,105 @@
   color: #333;
 }
 
-/* Grid + Cards */
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 1rem;
-  justify-content: start; /* prevents single card from stretching */
-  align-items: start;
-}
-
-.card {
-  display: flex;
-  flex-direction: column;
-  border: 1px solid #eee;
-  border-radius: 10px;
-  background: #fff;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-  overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  height: auto;
-  min-height: 350px;
-  max-width: 300px; /* prevents card from stretching */
-  margin: 0 auto;    /* center single card */
-}
-
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-}
-
-.card-image {
-  width: 100%;
-  aspect-ratio: 4 / 3; /* keep the same ratio */
-  overflow: hidden;
-  max-height: 280px; /* increase height slightly */
-}
-
-.card-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-
-
-.card-body {
-  padding: 1rem;
-  text-align: center;
-}
-
-.price {
-  color: var(--primary);
-  font-weight: bold;
-  margin-bottom: 1rem;
-}
-
-.btn {
-  display: inline-block;
-  background-color: #f4b400;
-  padding: 0.75rem 1.2rem;
-  border-radius: 5px;
-  text-align: center;
-  font-weight: 500;
-  transition: 0.3s;
-}
-
-.btn-primary {
-  background: var(--primary);
-  color: #333;
-}
-
-.btn:hover {
-  opacity: 0.9;
-}
-
-.nav-search {
-  justify-self: center;
-  width: 100%;
-  max-width: 500px;
-}
-
-.nav-search input {
-  padding: 0.5rem 1rem;
-  border: 1px solid #ccc;
-  border-radius: 10px;
-  font-size: 0.9rem;
-  width: 100%;
-}
-
-@media (max-width: 768px) {
-  .nav-search {
-    max-width: 900px;
-  }
-
-  .nav-search input {
-    font-size: 0.8rem;
-    padding: 0.4rem 0.8rem;
-  }
-}
-
 
 
   </style>
 </head>
 <body>
 
-<nav class="navbar">
-  <div class="nav-header">
-    <div class="logo">MyBrand</div>
+    <!-- 🔝 Top Social Bar -->
+  <div class="topbar">
+    <div class="topbar-left">
+      <a href="#"><i class="fab fa-facebook-f"></i></a>
+      <a href="#"><i class="fab fa-twitter"></i></a>
+      <a href="#"><i class="fab fa-instagram"></i></a>
+    </div>
+    <div class="topbar-center">
+      <p> MyBrand – Quality You Can Trust</p>
+    </div>
+    <div class="topbar-right">
+      <img src="https://flagcdn.com/w20/gh.png" alt="Ghana Flag">
+    </div>
+  </div>
 
-    <!-- 👇 Furniture search bar inside navbar -->
-    <div class="nav-search">
-  <input type="text" id="productSearch" placeholder="Search furniture...">
+<!-- 🔝 Second Info Bar -->
+<div class="infobar">
+  <div class="infobar-left">
+      <!-- Hamburger -->
+<button class="hamburger">☰</button>
+
+<!-- Mobile Nav Sidebar -->
+<div class="nav-sidebar" id="navSidebar">
+  <button class="close-nav">&times;</button> <!-- Replaced "Close" with × -->
+  <ul>
+     <li><a href="#" class="active">Home</a></li>
+     <li class="dropdown">
+       <a href="#">Products ▾</a>
+       <ul class="dropdown-menu">
+         <li><a href="furniture.html">Furnitures</a></li>
+         <li><a href="foodBeverages.html">Food & Beverages</a></li>
+       </ul>
+     </li>
+     <li><a href="#">About</a></li>
+     <li><a href="#">Contact</a></li>
+  </ul>
 </div>
 
-    <ul class="nav-links">
-      <li><a href="index.html">Home</a></li>
-      <li class="dropdown">
-        <a href="#">Products ▾</a>
-        <ul class="dropdown-menu">
-          <li><a href="furniture.html" class="active">Furnitures</a></li>
-          <li><a href="foodBeverages.html">Food & Beverages</a></li>
-        </ul>
-      </li>
-      <li><a href="#">About</a></li>
-      <li><a href="#">Contact</a></li>
-    </ul>
 
-    <button class="hamburger">&#9776;</button>
+<!-- Overlay -->
+<div class="mobile-overlay"></div>
+    <div class="logo">MyBrand</div>
   </div>
-</nav>
 
+  <div class="infobar-center">
+    <input type="text" id="productSearch" placeholder="Search furniture....">
+  </div>
+  <div class="infobar-right">
+    <a href="#" id="accountBtn" class="account-link">
+      <i class="fas fa-user"></i> Sign In
+    </a>
+    <button id="cartBtn" class="cart-btn">
+      <i class="fas fa-shopping-cart"></i>
+      <span id="cartCount">0</span>
+    </button>
+  </div>
+</div>
+
+<!-- Navbar -->
+  <nav class="navbar">
+    <div class="nav-header">
+      <ul class="nav-links">
+        <li><a href="index.html" class="active">Home</a></li>
+        <li class="dropdown">
+          <a href="#">Products ▾</a>
+          <ul class="dropdown-menu">
+            <li><a href="furniture.html">Furnitures</a></li>
+            <li><a href="foodBeverages.html">Food & Beverages</a></li>
+          </ul>
+        </li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Contact</a></li>
+      </ul>
+
+
+    </div>
+  </nav>
   <div class="mobile-overlay"></div>
+  
+</div>
+
+<!-- Overlay (single element) -->
+<div class="mobile-overlay"></div>
+
+<!-- 🛒 Cart Sidebar -->
+<div class="cart-sidebar" id="cartSidebar">
+  <h3>Your Cart</h3>
+  <ul id="cartItems"></ul>
+  <p class="cart-total">Total: GHS <span id="cartTotal">0</span></p>
+  <button class="btn btn-primary checkout-btn">Checkout</button>
+  <button class="btn close-cart" id="closeCart">Close</button>
+</div>
+
 
   <!-- Furniture Categories -->
   <section class="category-bar">
@@ -216,55 +181,80 @@
     </div>
   </section>
 
-  <!-- Furniture Products -->
+  <!-- Products Grid -->
+<section class="section bg-light">
   <div class="container">
+    <h2 class="section-title">Our Products</h2>
+
     <div class="grid" id="productsGrid">
-      <div class="card" data-category="chairs">
-        <div class="card-image"><img src="WhatsApp Image 2025-09-16 at 15.06.10_eca6fc6e.jpg" alt="Wooden Chair"></div>
+      <!-- Example Product -->
+      <div class="card">
+        <div class="card-image">
+          <img src="https://images.unsplash.com/photo-1505691938895-1758d7feb511?w=600" alt="Furniture">
+        </div>
         <div class="card-body">
-          <h3>Wooden Chair</h3>
-          <p class="price">GHS 250</p>
-          <a href="#" class="btn">Order Now</a>
+          <h3>Modern Sofa</h3>
+          <p class="price" data-price="1200">GHS 1,200</p>
+          <button class="btn btn-primary add-to-cart">Add to Cart</button>
         </div>
       </div>
 
-      <div class="card" data-category="tables">
-        <div class="card-image"><img src="WhatsApp Image 2025-09-16 at 15.06.10_eca6fc6e.jpg" alt="Dining Table"></div>
+      <div class="card">
+        <div class="card-image">
+          <img src="https://images.unsplash.com/photo-1617196038435-47b36cde7975?w=600" alt="Tom Brown">
+        </div>
         <div class="card-body">
-          <h3>Dining Table</h3>
-          <p class="price">GHS 750</p>
-          <a href="#" class="btn">Order Now</a>
+          <h3>Nutritious Tom Brown</h3>
+          <p class="price" data-price="45">GHS 45</p>
+          <button class="btn btn-primary add-to-cart">Add to Cart</button>
         </div>
       </div>
 
-      <div class="card" data-category="sofas">
-        <div class="card-image"><img src="WhatsApp Image 2025-09-16 at 15.06.10_eca6fc6e.jpg" alt="Luxury Sofa"></div>
-        <div class="card-body">
-          <h3>Luxury Sofa</h3>
-          <p class="price">GHS 1800</p>
-          <a href="#" class="btn">Order Now</a>
+      <div class="card">
+        <div class="card-image">
+          <img src="https://images.unsplash.com/photo-1606788075761-66f3a50a26a6?w=600" alt="Groundnut Paste">
         </div>
-      </div>
-
-      <div class="card" data-category="beds">
-        <div class="card-image"><img src="WhatsApp Image 2025-09-16 at 15.06.10_eca6fc6e.jpg" alt="King Size Bed"></div>
         <div class="card-body">
-          <h3>King Size Bed</h3>
-          <p class="price">GHS 2200</p>
-          <a href="#" class="btn">Order Now</a>
-        </div>
-      </div>
-
-      <div class="card" data-category="wardrobes">
-        <div class="card-image"><img src="WhatsApp Image 2025-09-16 at 15.06.10_eca6fc6e.jpg" alt="Wardrobe"></div>
-        <div class="card-body">
-          <h3>Wardrobe</h3>
-          <p class="price">GHS 950</p>
-          <a href="#" class="btn">Order Now</a>
+          <h3>Fresh Groundnut Paste</h3>
+          <p class="price" data-price="30">GHS 30</p>
+          <button class="btn btn-primary add-to-cart">Add to Cart</button>
         </div>
       </div>
     </div>
   </div>
+</section>
+
+ <!-- Footer -->
+  <footer>
+    <div class="container footer-content">
+      <div>
+        <h3>MyBrand</h3>
+        <p>Your trusted shop for furniture and food products.</p>
+         <div class="icons">
+      <a href="#"><i class="fab fa-facebook-f"></i></a>
+      <a href="#"><i class="fab fa-twitter"></i></a>
+      <a href="#"><i class="fab fa-instagram"></i></a>
+    </div>
+      </div>
+      <div>
+        <h4>Quick Links</h4>
+        <a href="#">Home</a><br>
+        <a href="#">Products</a><br>
+        <a href="#">About</a><br>
+        <a href="#">Contact</a>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <p>Accra, Ghana</p>
+        <p>+233 XXX XXX XXX</p>
+        <p>info@mybrand.com</p>
+      </div>
+    </div>
+    <p style="text-align:center; color:#040303d7;">&copy; 2025 Fosten Company. All rights reserved.</p>
+  </footer>
+
+
+  <script src="script.js"></script>
 
   <script>
     // Mobile nav toggle

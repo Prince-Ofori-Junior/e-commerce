@@ -1,20 +1,40 @@
-// === NAVIGATION ===
+// === ELEMENTS ===
 const hamburger = document.querySelector(".hamburger");
-const navLinks = document.querySelector(".nav-links");
+const navSidebar = document.getElementById("navSidebar");
+const closeNav = document.querySelector(".close-nav");
+
+const cartBtn = document.getElementById("cartBtn");
+const cartSidebar = document.getElementById("cartSidebar");
+const closeCart = document.getElementById("closeCart");
+
 const overlay = document.querySelector(".mobile-overlay");
 
-hamburger.addEventListener("click", () => {
-  navLinks.classList.toggle("show");         // slide menu in/out
-  overlay.classList.toggle("active");        // dark overlay
-});
+// === OPEN/CLOSE FUNCTIONS ===
+function openSidebar(sidebar) {
+  sidebar.classList.add("open");
+  overlay.classList.add("active");
+}
 
-// Close menu when overlay is clicked
-overlay.addEventListener("click", () => {
-  navLinks.classList.remove("show");
+function closeSidebar(sidebar) {
+  sidebar.classList.remove("open");
   overlay.classList.remove("active");
+}
+
+// === HAMBURGER NAVIGATION ===
+hamburger.addEventListener("click", () => openSidebar(navSidebar));
+closeNav.addEventListener("click", () => closeSidebar(navSidebar));
+
+// === CART SIDEBAR ===
+cartBtn.addEventListener("click", () => openSidebar(cartSidebar));
+closeCart.addEventListener("click", () => closeSidebar(cartSidebar));
+
+// === OVERLAY CLICK ===
+overlay.addEventListener("click", () => {
+  if (navSidebar.classList.contains("open")) closeSidebar(navSidebar);
+  if (cartSidebar.classList.contains("open")) closeSidebar(cartSidebar);
 });
 
-// === SEARCH ===
+// === SEARCH FUNCTIONALITY ===
 const searchInput = document.getElementById("productSearch");
 const cards = document.querySelectorAll(".card");
 
@@ -26,22 +46,11 @@ searchInput.addEventListener("input", () => {
   });
 });
 
-// === MINI CART ===
+// === MINI CART FUNCTIONALITY ===
 let cart = [];
-const cartBtn = document.getElementById("cartBtn");
-const cartSidebar = document.getElementById("cartSidebar");
-const closeCart = document.getElementById("closeCart");
 const cartItemsList = document.getElementById("cartItems");
 const cartTotalEl = document.getElementById("cartTotal");
 const cartCount = document.getElementById("cartCount");
-
-cartBtn.addEventListener("click", () => {
-  cartSidebar.classList.toggle("open");
-});
-
-closeCart.addEventListener("click", () => {
-  cartSidebar.classList.remove("open");
-});
 
 function updateCart() {
   cartItemsList.innerHTML = "";
@@ -66,7 +75,7 @@ function removeFromCart(index) {
   updateCart();
 }
 
-// Attach add-to-cart event
+// Add-to-cart buttons
 document.querySelectorAll(".add-to-cart").forEach((btn) => {
   btn.addEventListener("click", (e) => {
     const card = e.target.closest(".card");
@@ -84,24 +93,57 @@ document.querySelectorAll(".add-to-cart").forEach((btn) => {
   });
 });
 
-// === NAV SIDEBAR ===
-const navSidebar = document.getElementById("navSidebar");
-const closeNav = document.querySelector(".close-nav");
+// === LOAD PRODUCTS FROM BACKEND ===
+async function loadProducts() {
+  try {
+    const response = await fetch("https://your-backend.com/api/products"); // Replace with your API
+    const products = await response.json();
 
-hamburger.addEventListener("click", () => {
-  navSidebar.classList.toggle("open");
-  overlay.classList.toggle("active");
-});
+    const productsGrid = document.getElementById("productsGrid");
+    productsGrid.innerHTML = ""; // Clear existing content
 
-closeNav.addEventListener("click", () => {
-  navSidebar.classList.remove("open");
-  overlay.classList.remove("active");
-});
+    products.forEach(product => {
+      const card = document.createElement("div");
+      card.classList.add("card");
+      card.innerHTML = `
+        <div class="card-image">
+          <img src="${product.image}" alt="${product.name}">
+        </div>
+        <div class="card-body">
+          <h3>${product.name}</h3>
+          <p class="price" data-price="${product.price}">GHS ${product.price}</p>
+          <button class="btn btn-primary add-to-cart">Add to Cart</button>
+        </div>
+      `;
+      productsGrid.appendChild(card);
+    });
 
-overlay.addEventListener("click", () => {
-  navSidebar.classList.remove("open");
-  cartSidebar.classList.remove("open"); // also closes cart
-  overlay.classList.remove("active");
-});
+    attachAddToCartEvents(); // Reattach cart buttons
+  } catch (error) {
+    console.error("Failed to load products:", error);
+  }
+}
 
+// === ATTACH CART EVENTS AFTER DYNAMIC LOAD ===
+function attachAddToCartEvents() {
+  document.querySelectorAll(".add-to-cart").forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      const card = e.target.closest(".card");
+      const name = card.querySelector("h3").textContent;
+      const price = parseFloat(card.querySelector(".price").dataset.price);
+
+      const existing = cart.find(item => item.name === name);
+      if (existing) {
+        existing.qty++;
+      } else {
+        cart.push({ name, price, qty: 1 });
+      }
+
+      updateCart();
+    });
+  });
+}
+
+// Load products on page load
+loadProducts();
 
